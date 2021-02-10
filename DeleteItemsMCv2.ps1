@@ -1,5 +1,7 @@
 # DeleteItemsMCv2.ps1
 # Delete Items with a specific message class.
+# The script requires the EWS managed API, which can be downloaded here:
+# https://www.microsoft.com/en-us/download/details.aspx?id=42951
 
 #DISCLAIMER:
 # THIS CODE IS SAMPLE CODE. THESE SAMPLES ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND.
@@ -205,15 +207,15 @@ function CreateService($targetMailbox)
 
 function SearchFolders($MailboxName)
 {
-	# Process the mailbox 
-    Write-Host ([string]::Format("Processing mailbox {0}", $MailboxName)) -ForegroundColor Gray
+	#Â ProcessÂ theÂ mailboxÂ 
+Â Â Â Â Write-HostÂ ([string]::Format("ProcessingÂ mailboxÂ {0}",Â $MailboxName))Â -ForegroundColorÂ Gray
 	
-	$global:service = CreateService($MailboxName)
+	$global:serviceÂ =Â CreateService($MailboxName)
 
-    if ($global:service -eq $Null) 
-    { 
-        Write-Host "Failed to create ExchangeService" -ForegroundColor Red 
-    } 
+Â Â Â Â ifÂ ($global:serviceÂ -eqÂ $Null)Â 
+Â Â Â Â {Â 
+Â Â Â Â Â Â Â Â Write-HostÂ "FailedÂ toÂ createÂ ExchangeService"Â -ForegroundColorÂ RedÂ 
+Â Â Â Â }Â 
 
 	Log "Searching folders in Mailbox Name: '$($MailboxName)'" $info
 	
@@ -271,7 +273,7 @@ function SearchFolders($MailboxName)
 	
 	Log "Finished with Mailbox Name: '$($MailboxName)'" $info
 
-	$global:service = $Null
+	$global:serviceÂ =Â $Null
 }
 
 function DeleteItems($fId)
