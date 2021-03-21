@@ -6,8 +6,7 @@
 #.\DeleteAttachmentV2.ps1 -Username serviceaccount -Password password -Domain domain -EwsUrl "https://mail.contoso.com/ews/exchange.asmx" -IgnoreSSLCertificate -AttachmentNameContains "Hello World" -Impersonate
 
 #Example: $cred =Get-Credential
-#.\DeleteAttachmentV2.ps1 -Credentials $cred -EwsUrl "https://mail.contoso.com/ews/exchange.asmx" -IgnoreSSLCertificate -AttachmentNameContains IPM.Note.xyz
-#.\DeleteAttachmentV2.ps1 -Credentials $cred -EwsUrl "https://EXHR-84992.EXHR-84992dom.extest.microsoft.com/ews/exchange.asmx" -IgnoreSSLCertificate -AttachmentNameContains "Hello World"
+#.\DeleteAttachmentV2.ps1 -Credentials $cred -EwsUrl "https://mail.contoso.com/ews/exchange.asmx" -IgnoreSSLCertificate -AttachmentNameContains "Hello World"
 
 
 param (
@@ -206,15 +205,15 @@ function CreateService($targetMailbox)
 
 function SearchFolders($MailboxName)
 {
-	# Process the mailbox 
-	Log "Processing mailbox Name: '$($MailboxName)'" $info
+	#Â ProcessÂ theÂ mailboxÂ 
+	Log "ProcessingÂ mailbox Name: '$($MailboxName)'" $info
 	
-	$global:service = CreateService($MailboxName)
+	$global:serviceÂ =Â CreateService($MailboxName)
 
-    if ($global:service -eq $Null) 
-    { 
-        Write-Host "Failed to create ExchangeService" -ForegroundColor Red 
-    } 
+Â Â Â Â ifÂ ($global:serviceÂ -eqÂ $Null)Â 
+Â Â Â Â {Â 
+Â Â Â Â Â Â Â Â Write-HostÂ "FailedÂ toÂ createÂ ExchangeService"Â -ForegroundColorÂ RedÂ 
+Â Â Â Â }Â 
 
 	Log "Searching folders in Mailbox Name: '$($MailboxName)'" $info
 	
@@ -272,7 +271,7 @@ function SearchFolders($MailboxName)
 	
 	Log "Finished with Mailbox Name: '$($MailboxName)'" $info
 
-	$global:service = $Null
+	$global:serviceÂ =Â $Null
 }
 
 function DeleteAttachment($fId)
