@@ -1,5 +1,7 @@
 # DeleteAttachmentV2.ps1
 # Delete a specific attachment from a message.
+# The script requires the EWS managed API, which can be downloaded here:
+# https://www.microsoft.com/en-us/download/details.aspx?id=42951
 
 #DISCLAIMER:
 # THIS CODE IS SAMPLE CODE. THESE SAMPLES ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND.
@@ -8,6 +10,7 @@
 #Example: $cred =Get-Credential
 #.\DeleteAttachmentV2.ps1 -Credentials $cred -EwsUrl "https://mail.contoso.com/ews/exchange.asmx" -IgnoreSSLCertificate -AttachmentNameContains "Hello World"
 
+#Note: Lines 335 and 342 are commented out to prevent deletion. Uncomment after testing the result to delete the attachments from emails.
 
 param (
 	[Parameter(Mandatory=$False,HelpMessage="Username used to authenticate with EWS")]
