@@ -329,14 +329,14 @@ function DeleteAttachment($fId)
 						{
 							$AttachmentFound =$True
 							Log "Attachment Found with Name:'$($attach.Name)'" $success	
-							$temp= $item.Attachments.Remove($attach)
+							#$temp= $item.Attachments.Remove($attach)
 							break
 						}
 				}
 				if($AttachmentFound)
 				{
 					Log "Deleting Attachment(s) from Message with subject: $($item.Subject)" $success
-					$item.Update([Microsoft.Exchange.WebServices.Data.ConflictResolutionMode]::AlwaysOverwrite)
+					#$item.Update([Microsoft.Exchange.WebServices.Data.ConflictResolutionMode]::AlwaysOverwrite)
 				}
 		}
 
