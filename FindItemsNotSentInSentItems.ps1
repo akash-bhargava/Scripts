@@ -5,6 +5,7 @@
 
 #DISCLAIMER:
 # THIS CODE IS SAMPLE CODE. THESE SAMPLES ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND.
+
 # To search multiple mailboxes with Impersonation. Add all the Primary SMTP address to the Users.csv
 # Example:
 #.\FindItemsNotSentInSentItems.ps1 -Username serviceaccount -Password password -Domain domain -EwsUrl "https://mail.contoso.com/ews/exchange.asmx" -IgnoreSSLCertificate -Impersonate
