@@ -5,10 +5,13 @@
 
 #DISCLAIMER:
 # THIS CODE IS SAMPLE CODE. THESE SAMPLES ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND.
+# To search multiple mailboxes with Impersonation. Add all the Primary SMTP address to the Users.csv
+# Example:
 #.\FindItemsNotSentInSentItems.ps1 -Username serviceaccount -Password password -Domain domain -EwsUrl "https://mail.contoso.com/ews/exchange.asmx" -IgnoreSSLCertificate -Impersonate
 
-#Example: $cred =Get-Credential
-#.\FindItemsNotSentInSentItems.ps1 -Credentials $cred -EwsUrl "https://mail.contoso.com/ews/exchange.asmx" -IgnoreSSLCertificate
+# Example: 
+# $cred =Get-Credential
+# .\FindItemsNotSentInSentItems.ps1 -Credentials $cred -EwsUrl "https://mail.contoso.com/ews/exchange.asmx" -IgnoreSSLCertificate
 
 
 param (
@@ -223,8 +226,6 @@ function SearchSentItems($MailboxName)
 		Write-Host "FailedtocreateExchangeService"-ForegroundColor Red
 	}
 	
-	Log "Searching folders in Mailbox Name: '$($MailboxName)'" $info
-	
 	#Number of Items to Get
 	$pageSize =50
 	$Offset = 0
@@ -248,7 +249,7 @@ function SearchSentItems($MailboxName)
 		
 		$oFindItems = $service.FindItems([Microsoft.Exchange.WebServices.Data.WellKnownFolderName]::SentItems,$oSearchFilter,$itemView)
 
-		Log "#of Items Found '$($oFindItems.Items.Count)'" $info
+		Log "Items Found:'$($oFindItems.Items.Count)'" $info
 		
 	 if ($oFindItems.MoreAvailable -eq $false)
 		{$MoreItems = $false}
