@@ -146,10 +146,10 @@ function CreateService($targetMailbox)
     $exchangeService = New-Object Microsoft.Exchange.WebServices.Data.ExchangeService([Microsoft.Exchange.WebServices.Data.ExchangeVersion]::Exchange2013_SP1)
 
     # Set credentials if specified, or use logged on user.
-    if ($Credentials -ne $Null)
+    if($Null -ne $Credentials)
     {
-        Write-Host "Applying given credentials"
-        $exchangeService.Credentials = $Credentials.GetNetworkCredential()
+		Write-Host "Applying given credentials"
+		$exchangeService.Credentials = $Credentials.GetNetworkCredential()
     }
     elseif ($Username -and $Password)
     {
@@ -212,10 +212,10 @@ function SearchFolders($MailboxName)
 	
 	$global:service = CreateService($MailboxName)
 
-    if ($global:service -eq $Null) 
-    { 
-        Write-Host "Failed to create ExchangeService" -ForegroundColor Red 
-    } 
+    if ($Null -eq $global:service)
+	{
+		Write-Host "Failed to create ExchangeService" -ForegroundColor Red
+	} 
 
 	Log "Searching folders in Mailbox Name: '$($MailboxName)'" $info
 	
@@ -282,8 +282,6 @@ function DeleteItems($fId)
 	$pageSize =50
 	$Offset = 0
 	$MoreItems =$true
-	$ItemCount=0
-
 
 	while ($MoreItems)
 	 {
